@@ -22,6 +22,7 @@ function Form() {
     for (const key in formData) {
       formVal.append(key, formData[key]);
     }
+    console.log(formVal);
     axios
       .post("http://localhost:3000/upload", formVal)
       .then((res) => {
@@ -145,7 +146,27 @@ function Form() {
                       className="next-button"
                       disabled={page == FormTitles.length - 1}
                       onClick={() => {
-                        setPage((currPage) => currPage + 1);
+                        setPage((currPage) => {
+                          if (currPage == 0) {
+                            if (formData.firstName != "" && formData.lastName != "" && formData.email != "") {
+                              return currPage + 1;
+                            }
+                            return currPage;
+                          }
+                          if (currPage == 1) {
+                            if (formData.contact != "" && formData.address != "") {
+                              return currPage + 1;
+                            }
+                            return currPage;
+                          }
+                          if (currPage == 2) {
+                            if (formData.date != "") {
+                              return currPage + 1;
+                            }
+                            return currPage;
+                          }
+                          return currPage;
+                        });
                       }}
                     >
                       Next

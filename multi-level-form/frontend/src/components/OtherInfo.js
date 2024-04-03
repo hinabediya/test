@@ -13,6 +13,7 @@ function OtherInfo({ form, setForm }) {
     debugger;
     const formdata = new FormData();
     formdata.append("image", file);
+    console.log(formdata, "formdata");
     axios
       .post("http://localhost:3000/upload", formdata)
       .then((res) => {
