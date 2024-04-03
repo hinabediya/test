@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 });
+
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
